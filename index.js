@@ -2,23 +2,24 @@ window.onload = function() {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var inf = document.getElementById('info');
-  //info.innerHTML = x + ' , ' + y;
-  var prevX = 300;
-  var prevY = 300;
-  var coordArr = [[300,300]]
 
-
+  var prevX;
+  var prevY;
 
   canvas.addEventListener("mousemove", function() {
-    inf.innerHTML = coordArr;
-    dot(coordArr[0][0],coordArr[0][1],'white', 5.8);
+    inf.innerHTML = '('+ prevX + ', ' + prevY + ')';
+    dot(prevX,prevY,'white', 5.8);
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Get current mouse x,y
     var x = event.pageX - canvas.offsetLeft;
     var y = event.pageY - canvas.offsetTop;
-    //dot(x+1,y+1,'white');
-    dot(x,y,'red', 5);
-    coordArr[0] = [x,y];
 
+    dot(x,y,'red', 5);
+
+    // Replace the previous x,y with new x,y
+    prevX = x;
+    prevY = y;
 
   });
 
